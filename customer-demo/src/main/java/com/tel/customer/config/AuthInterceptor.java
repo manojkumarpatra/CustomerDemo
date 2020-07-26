@@ -1,17 +1,11 @@
 package com.tel.customer.config;
 
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.tel.customer.aop.Auth;
 import com.tel.customer.util.ApplicationConstant;
 import com.tel.customer.util.AuthorizationUtils;
 
