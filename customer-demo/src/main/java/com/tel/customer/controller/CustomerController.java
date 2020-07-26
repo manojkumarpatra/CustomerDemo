@@ -19,34 +19,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tel.customer.aop.Auth;
 import com.tel.customer.model.Customer;
 import com.tel.customer.service.CustomerService;
-
+//@Auth
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@Auth
+	
 	@GetMapping
 	public ResponseEntity<List<Customer>> getAllCustomers(@RequestHeader Map<String, String> headers) {
 		return ResponseEntity.ok().body(customerService.getCustomers());
 	}
-
-	@Auth
+	
 	@GetMapping("/{customernumber}")
 	public ResponseEntity<Customer> getCustomerById(@RequestHeader Map<String, String> headers,
 			@PathVariable("customernumber") long id) {
 		return ResponseEntity.ok().body(customerService.getCustomerById(id));
 	}
 
-	@Auth
 	@PostMapping
 	public ResponseEntity<Customer> createCustomer(@RequestHeader Map<String, String> headers,
 			@RequestBody Customer customer) {
 		return ResponseEntity.ok().body(this.customerService.createCustomer(customer));
 	}
 
-	@Auth
 	@PutMapping("/{customernumber}")
 	public ResponseEntity<Customer> updateCustomer(@RequestHeader Map<String, String> headers,
 			@PathVariable("customernumber") long id, @RequestBody Customer customer) {
@@ -54,12 +51,10 @@ public class CustomerController {
 		return ResponseEntity.ok().body(this.customerService.updateCustomer(customer));
 	}
 
-	@Auth
 	@DeleteMapping("/{customernumber}")
 	public HttpStatus deleteProduct(@RequestHeader Map<String, String> headers,
 			@PathVariable("customernumber") long id) {
 		this.customerService.deleteCustomerById(id);
 		return HttpStatus.OK;
 	}
-
 }

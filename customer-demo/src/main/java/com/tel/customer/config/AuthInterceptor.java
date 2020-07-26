@@ -1,5 +1,9 @@
 package com.tel.customer.config;
 
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +21,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		AuthorizationUtils.isAuthorized(request.getHeader(ApplicationConstant.USER_NAME),
+				request.getHeader(ApplicationConstant.PASSWORD));
+		/**
 		if (handler instanceof HandlerMethod) {
 			Auth authorize = ((HandlerMethod) handler).getMethodAnnotation(Auth.class);
 			if (null == authorize) {
@@ -29,23 +35,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 						request.getHeader(ApplicationConstant.PASSWORD));
 			}
 
-		}
+		}*/
 		return true;
 	}
-/**
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// we can add attributes in the modelAndView and use that in the view page
-	}
-
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		long startTime = (Long) request.getAttribute("startTime");
-		logger.info("Request URL::" + request.getRequestURL().toString() + ":: End Time=" + System.currentTimeMillis());
-		logger.info("Request URL::" + request.getRequestURL().toString() + ":: Time Taken="
-				+ (System.currentTimeMillis() - startTime));
-	}
-*/
 }

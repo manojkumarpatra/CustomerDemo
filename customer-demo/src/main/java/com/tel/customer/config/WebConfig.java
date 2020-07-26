@@ -7,16 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-/**
-    @Bean
-    public AuthorizerInterceptor AuthorizerInterceptor() {
-        return new AuthorizerInterceptor();
-    }
 
-    public @Override void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(AuthorizerInterceptor());
-    }
-    */
 	@Autowired
     private AuthInterceptor authInterceptor;
 

@@ -16,7 +16,7 @@ public class AuthorizationUtils {
 	private String password;
 
 	public static void isAuthorized(String userName, String password) {
-		StringBuilder msg = new StringBuilder("UserName : ").append(userName).append("Password : ").append(password);
+		StringBuilder msg = new StringBuilder("UserName : ").append(userName).append(", Password : ").append(password);
 		logger.debug(() -> msg.toString());
 		if ((userName == null || password == null)
 				|| (!userName.equals(userName) && password.equals(password))) {
