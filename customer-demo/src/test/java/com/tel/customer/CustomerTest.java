@@ -93,7 +93,7 @@ public class CustomerTest {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Username", "technical");
 		headers.add("Password", "Assessment");
-		HttpEntity request = new HttpEntity(headers);
+		HttpEntity<Object> request = new HttpEntity<Object>(headers);
 		final String baseUrl = "http://localhost:" + 8080 + "/customers";
 		URI uri = new URI(baseUrl);
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, request, String.class);

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tel.customer.aop.Auth;
 import com.tel.customer.model.Customer;
 import com.tel.customer.service.CustomerService;
 //@Auth
@@ -25,7 +24,6 @@ import com.tel.customer.service.CustomerService;
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
-
 	
 	@GetMapping
 	public ResponseEntity<List<Customer>> getAllCustomers(@RequestHeader Map<String, String> headers) {
