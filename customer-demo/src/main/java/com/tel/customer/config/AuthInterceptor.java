@@ -28,7 +28,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 				AuthorizationUtils.isAuthorized(request.getHeader(ApplicationConstant.USER_NAME),
 						request.getHeader(ApplicationConstant.PASSWORD));
 			}
-
 		}*/
 		return true;
 	}
