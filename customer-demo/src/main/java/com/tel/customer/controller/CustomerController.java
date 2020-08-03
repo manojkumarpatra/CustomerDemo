@@ -3,6 +3,8 @@ package com.tel.customer.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tel.customer.model.Customer;
 import com.tel.customer.service.CustomerService;
+
 //@Auth
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
-	
+
 	@GetMapping
 	public ResponseEntity<List<Customer>> getAllCustomers(@RequestHeader Map<String, String> headers) {
 		return ResponseEntity.ok().body(customerService.getCustomers());
 	}
-	
+
 	@GetMapping("/{customernumber}")
 	public ResponseEntity<Customer> getCustomerById(@RequestHeader Map<String, String> headers,
 			@PathVariable("customernumber") long id) {
@@ -38,13 +41,13 @@ public class CustomerController {
 
 	@PostMapping
 	public ResponseEntity<Customer> createCustomer(@RequestHeader Map<String, String> headers,
-			@RequestBody Customer customer) {
+			@Valid @RequestBody Customer customer) {
 		return ResponseEntity.ok().body(this.customerService.createCustomer(customer));
 	}
 
 	@PutMapping("/{customernumber}")
 	public ResponseEntity<Customer> updateCustomer(@RequestHeader Map<String, String> headers,
-			@PathVariable("customernumber") long id, @RequestBody Customer customer) {
+			@PathVariable("customernumber") long id, @Valid @RequestBody Customer customer) {
 		customer.setId(id);
 		return ResponseEntity.ok().body(this.customerService.updateCustomer(customer));
 	}
